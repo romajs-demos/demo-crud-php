@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   php-apache:
-    build: './docker/services/php-apache'
+    build: ./docker/services/php-apache
     depends_on:
       - mysql
     networks:
@@ -10,6 +10,19 @@ services:
       - "80:80"
     volumes:
       - ./src/:/var/www/html/
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:4.8
+    links:
+      - mysql:db
+    networks:
+      - demo-crud-php
+    ports:
+      - 81:80
+    environment:
+      MYSQL_DATABASE: demo-crud-php
+      MYSQL_PASSWORD: 123mudar
+      MYSQL_ROOT_PASSWORD: 123mudar
+      MYSQL_USER: demo-crud-php
   mysql:
     image: mysql:5.7
     networks:
