@@ -34,5 +34,7 @@ services:
       MYSQL_USER: demo-crud-php
     ports: 
       - 3306:3306
+    volumes:
+      - ./docker/services/mysql/seed/:/docker-entrypoint-initdb.d
 networks:
   demo-crud-php:
