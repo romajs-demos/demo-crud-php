@@ -31,7 +31,7 @@
                     echo "<td>"
                         ."<a href=\"update.php?id=$id\">Editar</a>"
                         ." "
-                        // ."<a href=\"#\">Excluir</a>"
+                        ."<a href=\"delete.php?id=$id\">Excluir</a>"
                         ."</td>";
                     echo "</tr>";
                 }
