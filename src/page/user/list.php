@@ -1,15 +1,27 @@
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://www.jsviews.com/download/jsrender.min.js"></script>
 <script type="text/javascript" src="../../util.js"></script>
-<h1>Users</h1>
-<?php
-    require_once "../../connection.php";
-    
-    $sql = "SELECT * FROM user";
-    $result = mysqli_query($connection, $sql); 
 
-    if (!$result) {
-        die ("Fail to query with no result");
-    }
-?>
+<script id="template" type="text/html">
+    <tr>
+        <td>{{:id}}</td>
+        <td>{{:username}}</td>
+        <td>{{:password}}</td>
+        <td>{{:email}}</td>
+        <td><a href="update.php?id={{:id}}">Edit</a></td>
+    </tr>
+</script>
+
+<script>
+    $(function () {
+        $.getJSON('/api/user/list.php', function(data) {
+            $("tbody").html($.templates("#template").render(data));
+        })
+    });
+</script>
+
+<h1>Users</h1>
+
 <table>
     <thead>
         <th>ID</th>
@@ -19,29 +31,9 @@
         <th>Actions</th>
     </thead>
     <tbody>
-        <?php
-            if ($result->num_rows > 0) {
-                while($row = $result->fetch_assoc()) {
-                    $id = $row["id"];
-                    echo "<tr>";
-                    echo "<td>".$row["id"]."</td>";
-                    echo "<td>".$row["username"]."</td>";
-                    echo "<td>".$row["password"]."</td>";
-                    echo "<td>".$row["email"]."</td>";
-                    echo "<td>"
-                        ."<a href=\"update.php?id=$id\">Editar</a>"
-                        ." "
-                        ."<a href=\"delete.php?id=$id\">Excluir</a>"
-                        ."</td>";
-                    echo "</tr>";
-                }
-            } else {
-                echo "<tr>";
-                echo "<td colspan=\"4\">No results</td>";
-                echo "</tr>";
-            }
-        ?>
     </tbody>
 </table>
+
 <br />
+
 <button type="button" onclick="goToUrl('create.php')">New User</button>

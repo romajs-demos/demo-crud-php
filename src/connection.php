@@ -1,6 +1,6 @@
 <?php
 
-    echo "<h4>Attempting MySQL connection from php...</h4>";
+    // echo "<h4>Attempting MySQL connection from php...</h4>";
 
     $database = 'demo-crud-php';
     $host = 'mysql';
@@ -13,9 +13,9 @@
         die("Connection failed: " . $connection->connect_error);
     } 
 
-    echo "<p>Connected to MySQL successfully</p>";
+    // echo "<p>Connected to MySQL successfully</p>";
 
     mysqli_select_db($connection, $database);
 
-    echo "<p>Selected database <strong>$database</strong></p>";
+    // echo "<p>Selected database <strong>$database</strong></p>";
 ?>
