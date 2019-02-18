@@ -1,7 +1,7 @@
-<script type="text/javascript" src="../util.js"></script>
+<script type="text/javascript" src="../../util.js"></script>
 <h1>Users</h1>
 <?php
-    require_once "../connection.php";
+    require_once "../../connection.php";
     
     $sql = "SELECT * FROM user";
     $result = mysqli_query($connection, $sql); 
@@ -29,7 +29,7 @@
                     echo "<td>".$row["password"]."</td>";
                     echo "<td>".$row["email"]."</td>";
                     echo "<td>"
-                        ."<a href=\"user.php?id=$id\">Editar</a>"
+                        ."<a href=\"update.php?id=$id\">Editar</a>"
                         ." "
                         // ."<a href=\"#\">Excluir</a>"
                         ."</td>";
@@ -44,4 +44,4 @@
     </tbody>
 </table>
 <br />
-<button type="button" onclick="goToUrl('user.php')">New User</button>
+<button type="button" onclick="goToUrl('create.php')">New User</button>
